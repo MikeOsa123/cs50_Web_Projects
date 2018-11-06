@@ -1,0 +1,24 @@
+$titlecolor: #373331;
+$textcolor: #605a56;
+$subheader: 30px;
+
+h1{
+    color: $titlecolor;
+}
+
+p{
+    color: $textcolor;
+}
+
+div {
+    h3{
+        color: $titlecolor;
+        padding: 30px;
+        font-size: $subheader;
+    }
+
+    p{
+        color: $textcolor;
+        padding: 15px;
+    }
+}
