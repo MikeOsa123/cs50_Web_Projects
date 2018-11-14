@@ -1,0 +1,21 @@
+$titlecolor: #373331;
+$textcolor: #605a56;
+$subheader: 30px;
+$plainbackground: #faf9f9;
+
+h1{
+    color: $titlecolor;
+}
+
+p{
+    color: $textcolor;
+}
+
+.container{
+    background-color: $textcolor;
+}
+
+.registerBox {
+    background-color:$plainbackground;
+    width: 50%;
+}
