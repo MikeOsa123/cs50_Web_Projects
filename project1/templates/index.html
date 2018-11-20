@@ -4,11 +4,29 @@
     Mike's Book Review
 {% endblock %}
 
-{% block heading %}
-    Mike's Books
-{% endblock %}
-
 {% block body %}
-<a href="{{ url_for('register') }}">Register!!!</a>
-<a href="{{ url_for('login') }}">Login here!!!</a>
+<div id="slides" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+        <li data-target="#slides" data-slide-to="0" class="active"></li>
+        <li data-target="#slides" data-slide-to="1"></li>
+        <li data-target="#slides" data-slide-to="2"></li>        
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="http://72.10.32.30/plesk-site-preview/covervault.com/72.10.32.30/wp-content/uploads/2015/12/020-6x9-Table-Top-Book-Coffee-Template-Mockup-Prev4.jpg">
+            <div class="carousel-caption">
+                <h1 class="display-2">Mike's Books</h1>
+                <h3>Come Inside Start Reviewing</h3>
+                <button type="button" class="btn btn-outline-light btn-lg">BOOKS</button>
+                <button type="button" class="btn btn-primary btn-lg">SIGN IN</button>
+            </div>
+        </div>
+        <div class="carousel-item">
+             <img src="https://covervault.com/wp-content/uploads/2015/12/022-3-Book-Series-Wood-Floor-PSD-Mockup-Prev1.jpg">
+        </div>
+        <div class="carousel-item">
+             <img src="https://covervault.com/wp-content/uploads/2016/01/029-6x9-3-Book-Paperback-Series-Set-PSD-Mockup-Template-Prev1.jpg">
+        </div>
+    </div>
+</div>
 {% endblock %}
