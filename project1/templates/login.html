@@ -5,9 +5,38 @@
 {% endblock %}
 
 {% block heading %}
-    LOGIN!!!
+    Login to your Account
 {% endblock %}
 
 {% block body %}
-<a href="{{ url_for('register') }}">Register here!!!</a>
+
+        <div class="container">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-6 regbox">          
+                    <form action="{{ url_for('index') }}" method="post" class="form-signin text-center">
+                            <div class="form-group col-sm-12">
+                                    <label class="" for="inputUsername">Username *</label>
+                                    <input type="username" class="form-control" id="inputUsername" aria-describedby="usernameHelp" placeholder="Enter Username here.." required autofocus>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                    <label for="exampleInputPassword1">Password *</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="minimum of 6 characters" required>
+                            </div>
+                            <div class="checkbox">
+                                    <label>
+                                      <input type="checkbox" value="remember-me"> Remember me
+                                    </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">LOG ME IN</button>
+                    </form>
+                    <p class="footnote">
+                            Not a member? <a href="{{ url_for('register') }}">Sign up now</a>
+                    </p>
+                </div>
+                <div class="col"></div>
+            </div>            
+        </div>
+
+
 {% endblock %}

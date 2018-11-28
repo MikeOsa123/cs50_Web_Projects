@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
+
 h1 {
   color: #373331;
   text-align: center;
@@ -12,6 +13,10 @@ h1 {
 p {
   color: #605a56;
   text-align: center;
+}
+
+.footnote {
+  color: #faf9f9;
 }
 
 .container {
@@ -28,5 +33,11 @@ label {
 
 .row, .regbox{
   padding: 20px;
+}
+
+.form-signin, .form-register {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
 }
 /*# sourceMappingURL=main.css.map */

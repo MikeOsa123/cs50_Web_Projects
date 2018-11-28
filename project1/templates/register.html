@@ -9,40 +9,38 @@
 {% endblock %}
 
 {% block body %}
-    <div class="registerBox">
-        <p>
-                Register today so you can rate, review and submit your own book reviews!!!
-        </p>
         <div class="container">
+            <p>
+                        Register today so you can rate, review and submit your own book reviews!!!
+            </p>
             <div class="row">
                 <div class="col"></div>
-                <div class="col-8 regbox">          
-                    <form action="{{ url_for('index') }}" method="post">
-                        <div class="form-group">
-                            <label for="userFirstName">First Name</label>
-                            <input type="text" class="form-control" placeholder="First name">
+                <div class="col-6 regbox">          
+                    <form action="{{ url_for('index') }}" method="post" class="form-register text-center">
+                        <div class="form-group col-sm-12">
+                            <label for="userFirstName">First Name *</label>
+                            <input type="text" class="form-control" placeholder="John">
                         </div>
-                        <div class="form-group">
-                                <label for="userLastName">Last Name</label>
-                                <input type="text" class="form-control" placeholder="Last name">
+                        <div class="form-group col-sm-12">
+                                <label for="userLastName">Last Name *</label>
+                                <input type="text" class="form-control" placeholder="Smith">
                             </div>
-                        
-
-
-                            <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <div class="form-group col-sm-12">
+                                    <label for="inputUsername" >Username *</label>
+                                    <input type="username" class="form-control" id="inputUsername" aria-describedby="usernameHelp" placeholder="Create Username here.." required autofocus>
                             </div>
-                            <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <div class="form-group col-sm-12">
+                                    <label for="exampleInputPassword1">Password *</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="minimum of 6 characters" required>
                             </div>
                             <button type="submit" class="btn btn-primary">SIGN UP</button>
+                            <small id="formGuide" class="form-text text-muted">Fields marked by asterisks (*) are required.</small>
                     </form>
+                    <p class="footnote">
+                            Already registered? <a href="{{ url_for('login') }}">Click here to log in</a>
+                    </p>
                 </div>
                 <div class="col"></div>
             </div>            
         </div>
-    </div> 
 {% endblock %}
