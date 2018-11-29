@@ -28,14 +28,22 @@
                             <a href="{{ url_for('register') }}" class="nav-link">Register</a>
                     </li>
                     <li class="nav-item">
-                            <a href="#" class="nav-link">About Us</a>
+                            <a href="{{ url_for('about') }}" class="nav-link">About Us</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
                 <h1>{% block heading %}{% endblock %}</h1>
-
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
                 {% block body %}
                 {% endblock %}   
     </body>

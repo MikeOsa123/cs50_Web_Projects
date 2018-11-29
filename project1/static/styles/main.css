@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
 
+
 h1 {
   color: #373331;
   text-align: center;
@@ -19,10 +20,10 @@ p {
   color: #faf9f9;
 }
 
-.container {
+.container, body {
   background-color: #faf9f9; }
 
-.regbox {
+.form-register, .form-signin{
   background-color: #605a56;
   width: 100%; 
 }
@@ -35,7 +36,11 @@ label {
   padding: 20px;
 }
 
-.form-signin, .form-register {
+.container {
+  max-width: 330px;
+}
+
+.form-signin, .form-register{
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
