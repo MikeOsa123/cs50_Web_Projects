@@ -42,6 +42,7 @@ with open('/Users/michael.osamwonyi/CS50/cs50_Web_Projects/project1/books.csv') 
         data = csv.reader(file)
         line_count = 0
         data_list = list(data)
+        data_list = data_list[1:]
         for row in data_list:
             session.add(Books(isbn=row[0], title=row[1], author=row[2], year=row[3]))
             line_count += 1
