@@ -1,52 +1,34 @@
-import csv
 import os
 
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import insert
-import pandas as pd
+from sqlalchemy.orm import scoped_session, sessionmaker
+import csv
 
-# Create an engine that setups connection to the database
-engine = create_engine('postgres://mpqnzaliuamutf:e13162afb75547673fa5b9616074eeb400fd5609cee4a2eefe3602a6211a778a@ec2-54-217-235-16.eu-west-1.compute.amazonaws.com:5432/d4mmdaqctskcqf')
+# database engine object from SQLAlchemy that manages connections to the database
+engine = create_engine(os.getenv("DATABASE_URL"))
 
-Base = declarative_base()
+# DATABASE_URL is an environment variable that indicates where the database lives
 
-class Books(Base):
-    # Define columns for the table books
-    __tablename__ = "books"
-    bookid = Column(Integer, primary_key=True)
-    isbn = Column(String)
-    title = Column(String)
-    author = Column(String)
-    year = Column(String)
+# create a 'scoped session' that ensures different users' interactions with the database are kept separate
+db = scoped_session(sessionmaker(bind=engine))
 
-# Creates all tables in the engine.
-Base.metadata.create_all(engine)
+def main():
+    f = open("/Users/admin/git_repo/cs50_Web_Projects/project1/books.csv")
+    reader = csv.reader(f)
+    # loop gives each column a name
+    line_count = 0 #track how many lines of data is committed to the database
+    next(reader, None)
+    for isbn, title, author, year in reader:
+        db.execute("INSERT INTO books (isbn, title, author, year) VALUES (:isbn, :title, :author, :year)",
+        {"isbn":isbn, "title":title, "author":author, "year":year})
+        # substitute values from CSV line into SQL command, as per this dict
+        print(f"Added {title} written by {author}, published in the year {year}.")
+        line_count += 1
 
-# Bind the engine to the metadata of the Base class so that the
-# declaratives can be accessed through a DBSession instance
-Base.metadata.bind = engine
-
-DBSession = sessionmaker(bind=engine)
-# A DBSession() instance establishes all conversations with the database
-# and represents a "staging zone" for all the objects loaded into the
-# database session object.
-
-session = DBSession()
+        if line_count % 1000 == 0:
+            db.commit()
+            print("1000 lines of data has been committed to the database!")
 
 
-# read from books.csv file using the reader object
-with open('/Users/michael.osamwonyi/CS50/cs50_Web_Projects/project1/books.csv') as file:
-        data = csv.reader(file)
-        line_count = 0
-        data_list = list(data)
-        for row in data_list:
-            session.add(Books(isbn=row[0], title=row[1], author=row[2], year=row[3]))
-            line_count += 1
-            if line_count % 1000 == 0:
-                session.commit()
-
-
-        
+if __name__ == "__main__":
+    main()

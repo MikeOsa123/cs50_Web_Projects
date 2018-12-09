@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Mike's Book Review
+{% endblock %}
+
+{% block heading %}
+<div class="container">
+        Search Results
+</div>     
+{% endblock %}
+
+{% block body %}
+<div>
+        <h2>You searched for {{ session['column']}}: {{ session['search'] }}</h2>
+        {% if query == [] %}
+        <h3 style="color:firebrick"> Your search returned no results</h3>
+
+        {% else %}    
+    
+        <table style="width:50%">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>ISBN</th>
+        </tr>
+        
+            {% for item in query %}
+            <tr>
+            <td><a href="/{{ item.isbn }}">{{ item.title }}</a></td>
+            <td>{{ item.author }}</td>
+            <td>{{ item.year }}</td>
+            <td><a href="/{{ item.isbn }}">{{ item.isbn }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+</div>
+
+{% endblock %}

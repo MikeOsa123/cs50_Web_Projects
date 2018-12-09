@@ -23,7 +23,7 @@ p {
 .container, body {
   background-color: #faf9f9; }
 
-.form-register, .form-signin{
+.form-register, .form-signin, .form-search, .book-results{
   background-color: #605a56;
   width: 100%; 
 }
@@ -40,9 +40,14 @@ label {
   max-width: 330px;
 }
 
-.form-signin, .form-register{
+.form-signin, .form-register, .form-search, .book-results{
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
 }
 /*# sourceMappingURL=main.css.map */
+
+/* CSS for Search page */
+.form-group {
+ text-align: center;
+}

@@ -6,7 +6,6 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import insert
-import pandas as pd
 
 # Create an engine that setups connection to the database
 engine = create_engine('postgres://mpqnzaliuamutf:e13162afb75547673fa5b9616074eeb400fd5609cee4a2eefe3602a6211a778a@ec2-54-217-235-16.eu-west-1.compute.amazonaws.com:5432/d4mmdaqctskcqf')

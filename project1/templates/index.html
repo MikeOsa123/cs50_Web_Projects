@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+{% if not session['username'] %}
 <div id="slides" class="carousel slide" data-ride="carousel">
     <ul class="carousel-indicators">
         <li data-target="#slides" data-slide-to="0" class="active"></li>
@@ -17,8 +18,8 @@
             <div class="carousel-caption">
                 <h1 class="display-2">Mike's Books</h1>
                 <h3>Come Inside Start Reviewing</h3>
-                <button type="button" class="btn btn-outline-light btn-lg">BOOKS</button>
-                <button type="button" class="btn btn-primary btn-lg">SIGN IN</button>
+                <a href="{{ url_for('books') }}" class="book-page"><button type="button" class="btn btn-outline-light btn-lg">BOOKS</button></a>
+                <a href="{{ url_for('login') }}" class="sign-in"><button type="button" class="btn btn-primary btn-lg">SIGN IN</button></a>
             </div>
         </div>
         <div class="carousel-item">
@@ -29,4 +30,23 @@
         </div>
     </div>
 </div>
+{% else %}
+
+<p>Logged in as {{ session['username'] }} 
+        <h2 class="text-center">Enter an Author, Title or ISBN</h2>
+            <form class="form-search" method="POST">
+                <fieldset class="form-group">
+                    <p><input type=text name=search placeholder="Enter text">
+                    <p><input type="radio" id="title" name="column" value="Title" checked="checked"/>
+                    <label for="Title">Title</label>
+                    <p><input type="radio" id="author" name="column" value="author" />
+                    <label for="author">Author</label>
+                    <p><input type="radio" id="ISBN" name="column" value="ISBN" />
+                    <label for="ISBN">ISBN</label>
+                    <p><input type=submit value=Search>
+                </fieldset>
+            </form>
+</p>
+
+{% endif %}
 {% endblock %}
