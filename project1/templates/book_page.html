@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+<div class="container">
+    {% for item in book %}    
+    <h1>{{ item.title }}</h1>
+    
+    {% endfor %}
+</div>     
+{% endblock %}
+{% block body %}
+{% if 'username' in session: %}
+        <p>Logged in as {{ session['username'] }}</p>
+        {% endif %}
+
+<div class="container">     
+    <table style="width: 100%">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>ISBN</th>
+        </tr>
+        
+        {% for item in book %}
+        <tr>
+        <td>{{ item.title }}</td>
+        <td>{{ item.author }}</td>
+        <td>{{ item.year }}</td>
+        <td>{{ item.isbn }}</a></td>
+        </tr>
+    </table>
+    <h2> Reviews for {{ item.title }}</h2>
+        {% endfor %}
+        
+        
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Stars</th>
+            <th>Review</th>
+        </tr>
+        
+        {% for rev in reviews %}
+        <tr>
+        <td>{{ rev.username }}</td>
+        <td>{{ rev.stars }}</td>
+        <td>{{ rev.review }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="goodreads">
+        <h2>Goodreads Reviews</h2>
+        <ul>
+            <li>Average Star Rating: {{ avg_rating }}</li>
+            <li>Number of Ratings: {{ ratings_count }}</li>
+        </ul>
+    </div>
+    
+    <h2>Submit your own review for this book:</h2>
+    <form method="POST">
+        <div>
+            <p>Rate the book from 1-5:</p>
+            <input type="radio" id="number" name="stars" value="1" />
+            <label for="number">⭐️</label><br>
+            <input type="radio" id="number" name="stars" value="2" />
+            <label for="number">️️⭐️⭐️</label><br>
+            <input type="radio" id="number" name="stars" value="3" />
+            <label for="number">⭐️⭐️⭐️</label><br>
+            <input type="radio" id="number" name="stars" value="4" />
+            <label for="number">⭐️⭐️⭐️⭐️</label><br>
+            <input type="radio" id="number" name="stars" value="5" />
+            <label for="number">⭐️⭐️⭐️⭐️⭐️</label>
+            <p>
+            <input style="width:50%" type="text" name="review" id='review' placeholder="Type your thoughts on the book">
+            </p>
+            <p><input type=submit value=Submit>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p class=flashes style=color:green>
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+            </p>
+        {% endif %}
+        {% endwith %}
+    </form>
+</div>
+{% endblock %}
